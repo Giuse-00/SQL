@@ -7,6 +7,8 @@ public class Table {
     public static void main(String[] args) {
 
         ArrayList<String> arrayLastNames = new ArrayList<>();
+        Statement pStmnt = null;
+
 
         try{
 
@@ -18,12 +20,27 @@ public class Table {
             ResultSet resultSet = statement.executeQuery("SELECT * FROM students");
 
            while (resultSet.next()){
+
                 String firstNames = resultSet.getString("first_name");
                 String lastNames = resultSet.getString("last_name");
 
-               arrayLastNames.add(lastNames);
+                /* ALTER EXERCISE
 
-               System.out.println(arrayLastNames);
+                String newColumn = "ALTER TABLE students ADD country VARCHAR(30)";
+                pStmnt = connection.createStatement();
+                pStmnt.executeUpdate();
+
+                String newColumn = "UPDATE students SET country = 'Italy' WHERE students_id IN (1, 2)";
+                pStmnt.executeUpdate(newColumn);
+
+                newColumn = "UPDATE students SET country = 'Germany' WHERE students_id IN (3, 4)";
+                pStmnt.executeUpdate(newColumn);
+
+                 */
+
+                arrayLastNames.add(lastNames);
+
+                System.out.println(arrayLastNames);
             }
 
         } catch (SQLException e) {
